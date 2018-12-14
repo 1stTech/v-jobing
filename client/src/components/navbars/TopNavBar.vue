@@ -38,9 +38,11 @@ export default {
   },
   methods: {
     openModal () {
+      if (this.isActive) return
       this.isActive = true
     },
     closeModal () {
+      if (!this.isActive) return
       this.isActive = false
     }
   }

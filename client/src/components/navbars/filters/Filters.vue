@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  margin: 1rem 1.5rem 0;
+  margin: 0.5rem 1.5rem 0;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
