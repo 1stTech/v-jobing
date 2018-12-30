@@ -16,7 +16,7 @@ const error = require('./shared/middlewares/error-handler')
 const router = require('./routes/routes')
 
 // Set connection from DB
-// require('./shared/services/db')
+require('./shared/services/db')
 
 const limit = new RateLimit({
   windowMs: 60 * 1000, // 1 minute

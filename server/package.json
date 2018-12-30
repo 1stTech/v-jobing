@@ -19,6 +19,7 @@
     "express": "^4.16.4",
     "express-rate-limit": "^3.3.2",
     "helmet": "^3.15.0",
+    "mongoose": "^5.4.1",
     "shalk": "^1.0.0"
   },
   "devDependencies": {
