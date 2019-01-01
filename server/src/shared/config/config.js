@@ -12,4 +12,5 @@ module.exports = {
     mlab: process.env.MONGODB_MLAB_URL,
     test: process.env.MONGODB_URL,
   },
+  battutaMedunesKey: process.env.BATTUTA_MEDUNES_KEY,
 }

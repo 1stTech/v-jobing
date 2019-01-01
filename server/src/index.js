@@ -2,8 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const chalk = require('chalk')
 const helmet = require('helmet')
-const cors = require('cors')
-const RateLimit = require('express-rate-limit')
+// const cors = require('cors')
+// const RateLimit = require('express-rate-limit')
 
 // Set the path to environment variables
 const dotenv = require('dotenv')
@@ -18,17 +18,17 @@ const router = require('./routes/routes')
 // Set connection from DB
 require('./shared/services/db')
 
-const limit = new RateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 50, // limit each IP to 3 requests per windowMs
-  delayMs: 0, // disable delaying - full speed until the max limit is reached
-})
+// const limit = new RateLimit({
+//   windowMs: 60 * 1000, // 1 minute
+//   max: 50, // limit each IP to 3 requests per windowMs
+//   delayMs: 0, // disable delaying - full speed until the max limit is reached
+// })
 
 const app = express()
 app.use(helmet())
-app.use(cors())
-app.use(limit)
-app.use(express.json())
+// app.use(cors())
+// app.use(limit)
+// app.use(express.json())
 
 // log to console if environment is dev.
 if (process.env.NODE_ENV === 'development') {

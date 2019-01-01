@@ -1,5 +1,5 @@
 <template>
-  <div id="read-more" class="modal is-active" :class="{ 'is-active': isActiveVacancy }">
+  <div id="read-more" class="modal" :class="{ 'is-active': isActiveVacancy }">
     <div class="modal-background" @click="$emit('closeVModel')"></div>
     <div class="modal-content">
       <div class="box">
