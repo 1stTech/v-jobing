@@ -5,7 +5,7 @@
   "author": "Sergei R <sresetnjak@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon -r dotenv/config ./src/index.js --trace-warnings",
+    "dev": "NODE_ENV=development nodemon dotenv/config ./src/index.js --trace-warnings",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
