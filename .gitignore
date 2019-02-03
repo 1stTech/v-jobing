@@ -43,4 +43,8 @@ Thumbs.db
 # Logs
 /server/src/logs
 
+# Environment config
 .env*
+
+# BD Dumps
+/server/mLabDump

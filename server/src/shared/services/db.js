@@ -39,7 +39,6 @@ process.on('SIGINT', () => {
   })
 })
 process.on('unhandledRejection', (r) => {
-  console.log('UnhandledRejection: ', r) // TODO log
   logger.console('error', `UnhandledRejection: ${r}`)
   logger.file('error', `UnhandledRejection: ${r}`)
 })
