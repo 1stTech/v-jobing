@@ -1,10 +1,11 @@
 <template>
-  <div id="read-more" class="modal" :class="{ 'is-active': isActiveVacancy }">
+  <div id="read-more" class="modal is-active" v-if="isActiveVacancy">
     <div class="modal-background" @click="$emit('closeVModel')"></div>
     <div class="modal-content">
       <div class="box">
         <div class="content">
           <h3>Add new vacancy:</h3>
+          <!-- <div>VACANCY: {{ vacancy }}</div> -->
           <!-- Title -->
           <div class="field">
             <label class="label">
@@ -71,72 +72,11 @@
             </div>
           </div>
           <!-- Country -->
-          <div class="field">
-            <label class="label">
-              Country
-              <strong class="has-text-danger">*</strong>
-            </label>
-            <div class="control">
-              <div
-                class="select"
-                :class="{
-                  'is-success': !$v.vacancy.country.$invalid
-                }"
-              >
-                <select v-model="vacancy.country">
-                  <option disabled value>Select the country</option>
-                  <option>Estonia</option>
-                  <option>Latvia</option>
-                  <option>Finland</option>
-                  <option>Germany</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <FormComponentCountry :vacancy="vacancy"/>
           <!-- Region -->
-          <div class="field">
-            <label class="label">
-              Region
-              <strong class="has-text-danger">*</strong>
-            </label>
-            <div class="control">
-              <div
-                class="select"
-                :class="{
-                  'is-success': !$v.vacancy.region.$invalid
-                }"
-              >
-                <select v-model="vacancy.region">
-                  <option disabled value>Select the region</option>
-                  <option>Harjumaa</option>
-                  <option>Raplamaa</option>
-                  <option>Tartumaa</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <FormComponentRegion :vacancy="vacancy"/>
           <!-- City -->
-          <div class="field">
-            <label class="label">
-              City
-              <strong class="has-text-danger">*</strong>
-            </label>
-            <div class="control">
-              <div
-                class="select"
-                :class="{
-                  'is-success': !$v.vacancy.city.$invalid
-                }"
-              >
-                <select v-model="vacancy.city">
-                  <option disabled value>Select the city</option>
-                  <option>Tallinn</option>
-                  <option>Tartu</option>
-                  <option>Rapla</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <FormComponentCity :vacancy="vacancy"/>
           <!-- Role -->
           <div class="field">
             <label class="label">
@@ -196,12 +136,18 @@
 import { validationMixin } from "vuelidate"
 import { required, minLength, maxLength } from "vuelidate/lib/validators"
 import Multiselect from 'vue-multiselect'
+import FormComponentCountry from '@/components/FormComponents/FormComponentCountry'
+import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
+import FormComponentCity from '@/components/FormComponents/FormComponentCity'
 
 export default {
   name: "AddVacancy",
   mixins: [validationMixin],
   components: {
-    Multiselect
+    Multiselect,
+    FormComponentCountry,
+    FormComponentRegion,
+    FormComponentCity,
   },
   props: ["isActiveVacancy"],
   data() {
@@ -231,15 +177,6 @@ export default {
         minLength: minLength(3),
         maxLength: maxLength(70)
       },
-      country: {
-        required
-      },
-      region: {
-        required
-      },
-      city: {
-        required
-      },
       role: {
         required
       }
@@ -251,7 +188,7 @@ export default {
       this.vacancy.tags.value.push(tag)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -3,10 +3,10 @@ const logger = require('../../shared/services/logger')
 module.exports = Geo => ({
   async getCountryList(req, res, next) {
     try {
-      const list = await Geo.find({}, { country: 1 })
+      const list = await Geo.find({}, { country: 1, code: 1, id: -1 }).sort({ country: 1 })
       const countries = []
       list.forEach((el) => {
-        countries.push(el.country)
+        countries.push({ country: el.country, code: el.code })
       })
       req.data = countries
       next()
@@ -19,7 +19,7 @@ module.exports = Geo => ({
 
   async getRegionList(req, res, next) {
     try {
-      const list = await Geo.findOne({ code: req.params.code }, { region: 1 })
+      const list = await Geo.findOne({ code: req.params.code }, { region: 1 }).sort({ 'region.name': 1 })
       const regions = []
       list.region.forEach((el) => {
         regions.push(el.name)
@@ -48,6 +48,18 @@ module.exports = Geo => ({
                 in: { $concatArrays: ['$$this', '$$value'] },
               },
             },
+          },
+        },
+        {
+          $unwind: { path: '$cityNames' },
+        },
+        {
+          $sort: { cityNames: 1 },
+        },
+        {
+          $group: {
+            _id: null,
+            cityNames: { $push: '$cityNames' },
           },
         },
       ])
