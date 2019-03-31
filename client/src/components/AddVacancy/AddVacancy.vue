@@ -77,6 +77,8 @@
           <FormComponentRegion :vacancy="vacancy"/>
           <!-- City -->
           <FormComponentCity :vacancy="vacancy"/>
+          <!-- Tag -->
+          <FormComponentTag :vacancy="vacancy"/>
           <!-- Role -->
           <div class="field">
             <label class="label">
@@ -106,22 +108,6 @@
             <input type="checkbox" v-model="vacancy.remote">
             Remote
           </label>
-          <!-- Tags -->
-          <div class="field m-t-3">
-            <label class="label">Select a tags.</label>
-            <multiselect
-              v-model="vacancy.tags"
-              :options="tagOptions"
-              :multiple="true"
-              :searchable="true"
-              :close-on-select="false"
-              :show-labels="false"
-              placeholder="Select a tags"
-              :taggable="false"
-              @tag="addTag"
-              :limit="10"
-            ></multiselect>
-          </div>
           <hr>
           <p>tags: {{ vacancy.tags.value }}</p>
           <p>Options: {{ vacancy.tags.options }}</p>
@@ -135,19 +121,19 @@
 <script>
 import { validationMixin } from "vuelidate"
 import { required, minLength, maxLength } from "vuelidate/lib/validators"
-import Multiselect from 'vue-multiselect'
 import FormComponentCountry from '@/components/FormComponents/FormComponentCountry'
 import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
 import FormComponentCity from '@/components/FormComponents/FormComponentCity'
+import FormComponentTag from '@/components/FormComponents/FormComponentTag'
 
 export default {
   name: "AddVacancy",
   mixins: [validationMixin],
   components: {
-    Multiselect,
     FormComponentCountry,
     FormComponentRegion,
     FormComponentCity,
+    FormComponentTag
   },
   props: ["isActiveVacancy"],
   data() {
@@ -162,7 +148,6 @@ export default {
         remote: false,
         tags: []
       },
-      tagOptions: ['Javascript', 'Java', 'Php', 'C', 'C++', 'Python', 'Typescritp', 'Coffescript', 'Kotlin', 'Go', 'Kanban']
     };
   },
   validations: {
