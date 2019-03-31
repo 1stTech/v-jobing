@@ -19,7 +19,7 @@ module.exports = Tag => ({
 
   async getTagsByQueryString(req, res, next) {
     try {
-      const tagsList = await Tag.find({ title: { $in: [req.params.query] } })
+      const tagsList = await Tag.find({ title: { $regex: [req.params.query], $options: 'i' } }).sort({ queries: 1 })
       const tags = []
       tagsList.forEach((el) => {
         tags.push(el.title)
