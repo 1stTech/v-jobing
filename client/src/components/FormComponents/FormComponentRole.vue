@@ -1,18 +1,18 @@
 <template>
   <div class="field">
     <label class="label">
-      City
+      Role
       <strong class="has-text-danger">*</strong>
     </label>
     <div class="control">
       <div
         class="select"
-        :class="{ 'is-success': !$v.vacancy.city.$invalid }"
+        :class="{ 'is-success': !$v.vacancy.role.$invalid }"
       >
-        <select v-model="vacancy.city">
-          <option disabled value>Select the city</option>
+        <select v-model="vacancy.role">
+          <option disabled value>Select the role</option>
           <option
-            v-for="(el, index) in cities"
+            v-for="(el, index) in roles"
             :key="index"
           >{{ el }}</option>
         </select>
@@ -26,27 +26,25 @@ import { validationMixin } from "vuelidate"
 import { required } from "vuelidate/lib/validators"
 
 export default {
-  name: "FormComponentCity",
-  props: ['vacancy'],
+  name: "FormComponentRole",
+  props: ["vacancy"],
   mixins: [validationMixin],
-  watch: {
-    'vacancy.region': function(region) {
-      this.$store.dispatch('getCities', { code: this.vacancy.country.code, region })
-    }
+  created() {
+    this.$store.dispatch('getRoles')
   },
   computed: {
-    cities() {
-      return this.$store.getters.cities.data
+    roles() {
+      return this.$store.getters.roles
     }
   },
   validations: {
     vacancy: {
-      city: {
+      role: {
         required
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

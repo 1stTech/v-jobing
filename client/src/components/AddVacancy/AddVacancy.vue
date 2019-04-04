@@ -77,31 +77,10 @@
           <FormComponentRegion :vacancy="vacancy"/>
           <!-- City -->
           <FormComponentCity :vacancy="vacancy"/>
+          <!-- Role -->
+          <FormComponentRole :vacancy="vacancy"/>
           <!-- Tag -->
           <FormComponentTag :vacancy="vacancy"/>
-          <!-- Role -->
-          <div class="field">
-            <label class="label">
-              Role
-              <strong class="has-text-danger">*</strong>
-            </label>
-            <div class="control">
-              <div
-                class="select"
-                :class="{
-                  'is-success': !$v.vacancy.role.$invalid
-                }"
-              >
-                <select v-model="vacancy.role">
-                  <option disabled value>Select the role</option>
-                  <option>Backend</option>
-                  <option>Frontend</option>
-                  <option>Fullstack</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-          </div>
           <!-- Remote -->
           <label class="label">Select it if remote job.</label>
           <label class="checkbox">
@@ -124,6 +103,7 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators"
 import FormComponentCountry from '@/components/FormComponents/FormComponentCountry'
 import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
 import FormComponentCity from '@/components/FormComponents/FormComponentCity'
+import FormComponentRole from '@/components/FormComponents/FormComponentRole'
 import FormComponentTag from '@/components/FormComponents/FormComponentTag'
 
 export default {
@@ -133,6 +113,7 @@ export default {
     FormComponentCountry,
     FormComponentRegion,
     FormComponentCity,
+    FormComponentRole,
     FormComponentTag
   },
   props: ["isActiveVacancy"],
@@ -162,9 +143,6 @@ export default {
         minLength: minLength(3),
         maxLength: maxLength(70)
       },
-      role: {
-        required
-      }
     }
   },
   methods: {

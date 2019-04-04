@@ -7,6 +7,7 @@ import region from './modules/region'
 import city from './modules/city'
 import vacancy from './modules/vacancy'
 import tag from './modules/tag'
+import role from './modules/role'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     region,
     city,
     vacancy,
-    tag
+    tag,
+    role
   }
 })
