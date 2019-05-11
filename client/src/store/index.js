@@ -8,6 +8,7 @@ import city from './modules/city'
 import vacancy from './modules/vacancy'
 import tag from './modules/tag'
 import role from './modules/role'
+import jobType from './modules/job-type'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     city,
     vacancy,
     tag,
-    role
+    role,
+    jobType,
   }
 })

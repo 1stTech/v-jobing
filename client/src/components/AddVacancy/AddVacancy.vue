@@ -79,6 +79,8 @@
           <FormComponentCity :vacancy="vacancy"/>
           <!-- Role -->
           <FormComponentRole :vacancy="vacancy"/>
+          <!-- Job type -->
+          <FormComponentJobType :vacancy="vacancy"/>
           <!-- Tag -->
           <FormComponentTag :vacancy="vacancy"/>
           <!-- Remote -->
@@ -104,6 +106,7 @@ import FormComponentCountry from '@/components/FormComponents/FormComponentCount
 import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
 import FormComponentCity from '@/components/FormComponents/FormComponentCity'
 import FormComponentRole from '@/components/FormComponents/FormComponentRole'
+import FormComponentJobType from '@/components/FormComponents/FormComponentJobType'
 import FormComponentTag from '@/components/FormComponents/FormComponentTag'
 
 export default {
@@ -114,6 +117,7 @@ export default {
     FormComponentRegion,
     FormComponentCity,
     FormComponentRole,
+    FormComponentJobType,
     FormComponentTag
   },
   props: ["isActiveVacancy"],
@@ -126,6 +130,7 @@ export default {
         region: "",
         city: "",
         role: "",
+        jobType: [],
         remote: false,
         tags: []
       },
