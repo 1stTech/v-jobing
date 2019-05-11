@@ -9,6 +9,7 @@ import vacancy from './modules/vacancy'
 import tag from './modules/tag'
 import role from './modules/role'
 import jobType from './modules/job-type'
+import expLevel from './modules/exp-level'
 
 Vue.use(Vuex)
 
@@ -21,5 +22,6 @@ export default new Vuex.Store({
     tag,
     role,
     jobType,
+    expLevel,
   }
 })

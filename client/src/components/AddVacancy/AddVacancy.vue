@@ -81,6 +81,8 @@
           <FormComponentRole :vacancy="vacancy"/>
           <!-- Job type -->
           <FormComponentJobType :vacancy="vacancy"/>
+          <!-- Experience Level -->
+          <FornComponentExpLevel :vacancy="vacancy"/>
           <!-- Tag -->
           <FormComponentTag :vacancy="vacancy"/>
           <!-- Remote -->
@@ -107,6 +109,7 @@ import FormComponentRegion from '@/components/FormComponents/FormComponentRegion
 import FormComponentCity from '@/components/FormComponents/FormComponentCity'
 import FormComponentRole from '@/components/FormComponents/FormComponentRole'
 import FormComponentJobType from '@/components/FormComponents/FormComponentJobType'
+import FornComponentExpLevel from '@/components/FormComponents/FornComponentExpLevel'
 import FormComponentTag from '@/components/FormComponents/FormComponentTag'
 
 export default {
@@ -118,6 +121,7 @@ export default {
     FormComponentCity,
     FormComponentRole,
     FormComponentJobType,
+    FornComponentExpLevel,
     FormComponentTag
   },
   props: ["isActiveVacancy"],
@@ -131,6 +135,7 @@ export default {
         city: "",
         role: "",
         jobType: [],
+        expLevel: [],
         remote: false,
         tags: []
       },
