@@ -11,6 +11,7 @@ import role from './modules/role'
 import jobType from './modules/job-type'
 import jobFormat from './modules/job-format'
 import expLevel from './modules/exp-level'
+import comSize from './modules/company-size'
 
 Vue.use(Vuex)
 
@@ -25,5 +26,6 @@ export default new Vuex.Store({
     jobType,
     jobFormat,
     expLevel,
+    comSize,
   }
 })

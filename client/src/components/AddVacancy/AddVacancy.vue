@@ -87,15 +87,8 @@
           <FornComponentJobFormat :vacancy="vacancy"/>
           <!-- Tag -->
           <FormComponentTag :vacancy="vacancy"/>
-          <!-- Remote -->
-          <label class="label">Select it if remote job.</label>
-          <label class="checkbox">
-            <input type="checkbox" v-model="vacancy.remote">
-            Remote
-          </label>
-          <hr>
-          <p>tags: {{ vacancy.tags.value }}</p>
-          <p>Options: {{ vacancy.tags.options }}</p>
+          <!-- Company Size -->
+          <FormComponentComSize :vacancy="vacancy"/>
         </div>
       </div>
     </div>
@@ -104,8 +97,8 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { required, minLength, maxLength } from "vuelidate/lib/validators"
+import { validationMixin } from 'vuelidate'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import FormComponentCountry from '@/components/FormComponents/FormComponentCountry'
 import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
 import FormComponentCity from '@/components/FormComponents/FormComponentCity'
@@ -114,9 +107,10 @@ import FormComponentJobType from '@/components/FormComponents/FormComponentJobTy
 import FornComponentExpLevel from '@/components/FormComponents/FornComponentExpLevel'
 import FornComponentJobFormat from '@/components/FormComponents/FornComponentJobFormat'
 import FormComponentTag from '@/components/FormComponents/FormComponentTag'
+import FormComponentComSize from '@/components/FormComponents/FormComponentComSize'
 
 export default {
-  name: "AddVacancy",
+  name: 'AddVacancy',
   mixins: [validationMixin],
   components: {
     FormComponentCountry,
@@ -126,22 +120,24 @@ export default {
     FormComponentJobType,
     FornComponentExpLevel,
     FornComponentJobFormat,
-    FormComponentTag
+    FormComponentTag,
+    FormComponentComSize
   },
-  props: ["isActiveVacancy"],
+  props: ['isActiveVacancy'],
   data() {
     return {
       vacancy: {
-        title: "",
-        company: "",
-        country: "",
-        region: "",
-        city: "",
-        role: "",
+        title: '',
+        company: '',
+        country: '',
+        region: '',
+        city: '',
+        role: '',
         jobType: [],
         expLevel: [],
         jobFormat: [],
-        tags: []
+        tags: [],
+        comSize: '',
       },
     };
   },
