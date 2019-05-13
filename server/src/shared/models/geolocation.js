@@ -13,6 +13,11 @@ const schema = new mongoose.Schema({
       longitude: { type: String },
     }],
   }],
+  currencies: [{
+    code: { type: String },
+    name: { type: String },
+    symbol: { type: String },
+  }],
 })
 
 module.exports = mongoose.model('Geolocation', schema)
