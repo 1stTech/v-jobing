@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === 'development') {
   mongoose.set('debug', true)
 }
 
+mongoose.set('useCreateIndex', true)
+
 mongoose.connect(mongodbUri.mlab, { useNewUrlParser: true })
 
 mongoose.connection.on('error', (e) => {
