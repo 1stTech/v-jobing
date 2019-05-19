@@ -7,6 +7,8 @@ const geoMiddleware = require('../components/geolocation/geoMiddleware')(Geoloca
 const geoController = require('../components/geolocation/geoController')
 const tagsMiddleware = require('../components/tags/tagsMiddleware')(Tags)
 const tagsController = require('../components/tags/tagsController')
+const currencyMiddleware = require('../components/currency/currencyMiddleware')(Geolocation)
+const currencyController = require('../components/currency/currencyController')
 
 router.get('/', (req, res) => {
   res.status(200).send('v-jobing OK!')
@@ -34,5 +36,9 @@ router.get('/getTags/',
 router.get('/getTags/:query',
   tagsMiddleware.getTagsByQueryString,
   tagsController.getTagsByQueryString)
+
+router.get('/getCurrencyList',
+  currencyMiddleware.getCurrencyList,
+  currencyController.getCurrencyList)
 
 module.exports = router
