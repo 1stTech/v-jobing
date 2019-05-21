@@ -3,17 +3,20 @@ const logger = require('../../shared/services/logger')
 module.exports = Geo => ({
   async getCurrencyList(req, res, next) {
     try {
-      const list = await Geo.find({}, { currencies: 1 }).sort({ queries: 1 })
-      const currencyList = []
-      list.forEach((el) => {
-        const item = el.currencies
-        const currency = {}
-        for (const i of item) {
-          currency.code = i.code
-          currency.name = i.name
-          currency.symbol = i.symbol
-          currencyList.push(currency)
-        }
+      const list = await Geo.aggregate([
+        {
+          $unwind: '$currencies',
+        },
+        {
+          $group: {
+            _id: null,
+            currencies: { $addToSet: '$currencies' },
+          },
+        },
+      ])
+      const currencyList = list[0].currencies
+      currencyList.forEach((el) => {
+        Reflect.deleteProperty(el, '_id')
       })
       req.data = currencyList
       next()
