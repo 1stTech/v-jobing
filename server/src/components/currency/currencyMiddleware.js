@@ -11,6 +11,9 @@ module.exports = Geo => ({
           $unwind: '$currencies',
         },
         {
+          $sort: { 'currencies.code': -1 },
+        },
+        {
           $project: {
             currencies: {
               code: '$currencies.code',
