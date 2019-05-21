@@ -5,7 +5,19 @@ module.exports = Geo => ({
     try {
       const list = await Geo.aggregate([
         {
+          $project: { currencies: 1, _id: 0 },
+        },
+        {
           $unwind: '$currencies',
+        },
+        {
+          $project: {
+            currencies: {
+              code: '$currencies.code',
+              name: '$currencies.name',
+              symbol: '$currencies.symbol',
+            },
+          },
         },
         {
           $group: {
