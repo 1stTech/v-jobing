@@ -12,6 +12,7 @@ import jobType from './modules/job-type'
 import jobFormat from './modules/job-format'
 import expLevel from './modules/exp-level'
 import comSize from './modules/company-size'
+import currency from './modules/currency'
 
 Vue.use(Vuex)
 
@@ -27,5 +28,6 @@ export default new Vuex.Store({
     jobFormat,
     expLevel,
     comSize,
+    currency,
   }
 })

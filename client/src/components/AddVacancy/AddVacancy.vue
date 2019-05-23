@@ -5,7 +5,6 @@
       <div class="box">
         <div class="content">
           <h3>Add new vacancy:</h3>
-          <!-- <div>VACANCY: {{ vacancy }}</div> -->
           <!-- Title -->
           <div class="field">
             <label class="label">
@@ -85,10 +84,69 @@
           <FornComponentExpLevel :vacancy="vacancy"/>
           <!-- Job format -->
           <FornComponentJobFormat :vacancy="vacancy"/>
-          <!-- Tag -->
-          <FormComponentTag :vacancy="vacancy"/>
           <!-- Company Size -->
           <FormComponentComSize :vacancy="vacancy"/>
+          <!-- Relocation -->
+          <div class="field">
+            <label class="label">Relocation</label>
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox" v-model="vacancy.relocate">&nbsp;&nbsp;Yes</label>
+            </div>
+          </div>
+          <!-- Tag -->
+          <FormComponentTag :vacancy="vacancy"/>
+          <!-- Description -->
+          <div class="field">
+            <label class="label">
+              Description
+              <strong class="has-text-danger">*</strong>
+            </label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Describe your vacancy"
+                v-model="$v.vacancy.description.$model"
+                :class="{
+                'is-danger': $v.vacancy.description.$error,
+                'is-success': !$v.vacancy.description.$invalid
+              }">
+              </textarea>
+            </div>
+          </div>
+          <!-- Benefits -->
+          <div class="field">
+            <label class="label">
+              Benefits
+            </label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Describe your benefits"
+                v-model="vacancy.benefits">
+              </textarea>
+            </div>
+          </div>
+          <!-- Contacts -->
+          <div class="field">
+            <label class="label">
+              Contact
+              <strong class="has-text-danger">*</strong>
+            </label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Your contact information"
+                v-model="$v.vacancy.contact.$model"
+                :class="{
+                'is-danger': $v.vacancy.contact.$error,
+                'is-success': !$v.vacancy.contact.$invalid
+              }">
+              </textarea>
+            </div>
+          </div>
+          <!-- Salary -->
+          <FormComponentSalary :vacancy="vacancy"/>
         </div>
       </div>
     </div>
@@ -97,17 +155,19 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
-import FormComponentCountry from '@/components/FormComponents/FormComponentCountry'
-import FormComponentRegion from '@/components/FormComponents/FormComponentRegion'
-import FormComponentCity from '@/components/FormComponents/FormComponentCity'
-import FormComponentRole from '@/components/FormComponents/FormComponentRole'
-import FormComponentJobType from '@/components/FormComponents/FormComponentJobType'
-import FornComponentExpLevel from '@/components/FormComponents/FornComponentExpLevel'
-import FornComponentJobFormat from '@/components/FormComponents/FornComponentJobFormat'
-import FormComponentTag from '@/components/FormComponents/FormComponentTag'
-import FormComponentComSize from '@/components/FormComponents/FormComponentComSize'
+import { validationMixin } from 'vuelidate';
+import { required, minLength, maxLength } from 'vuelidate/lib/validators';
+import FormComponentCountry from '@/components/FormComponents/FormComponentCountry';
+import FormComponentRegion from '@/components/FormComponents/FormComponentRegion';
+import FormComponentCity from '@/components/FormComponents/FormComponentCity';
+import FormComponentRole from '@/components/FormComponents/FormComponentRole';
+import FormComponentJobType from '@/components/FormComponents/FormComponentJobType';
+import FornComponentExpLevel from '@/components/FormComponents/FornComponentExpLevel';
+import FornComponentJobFormat from '@/components/FormComponents/FornComponentJobFormat';
+import FormComponentTag from '@/components/FormComponents/FormComponentTag';
+import FormComponentComSize from '@/components/FormComponents/FormComponentComSize';
+import FormComponentSalary from '@/components/FormComponents/FormComponentSalary';
+
 
 export default {
   name: 'AddVacancy',
@@ -121,7 +181,8 @@ export default {
     FornComponentExpLevel,
     FornComponentJobFormat,
     FormComponentTag,
-    FormComponentComSize
+    FormComponentComSize,
+    FormComponentSalary,
   },
   props: ['isActiveVacancy'],
   data() {
@@ -138,7 +199,12 @@ export default {
         jobFormat: [],
         tags: [],
         comSize: '',
-      },
+        relocate: false,
+        description: '',
+        benefits: '',
+        contact: '',
+        salary: '',
+      }
     };
   },
   validations: {
@@ -153,15 +219,25 @@ export default {
         minLength: minLength(3),
         maxLength: maxLength(70)
       },
+      description: {
+        required,
+        minLength: minLength(25),
+        maxLength: maxLength(1000)
+      },
+      contact: {
+        required,
+        minLength: minLength(25),
+        maxLength: maxLength(1000)
+      }
     }
   },
   methods: {
     addTag(newTag) {
-      const tag = newTag
-      this.vacancy.tags.value.push(tag)
+      const tag = newTag;
+      this.vacancy.tags.value.push(tag);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
