@@ -3,18 +3,19 @@
     <label class="label">Salary</label>
     <div class="control">
       <input
-        v-model="vacancy.salary"
+        v-model="salarySumm"
         class="input"
         type="text"
         placeholder="Add the estimated salary (1000 - 2000)"
       >
       <div class="select">
-        <select>
+        <select v-model="salaryCode">
           <option disabled value>Select currency</option>
           <option
             v-for="(el, index) in currency"
             :key="index"
-          >{{ el }}</option>
+            :value="el.code"
+          >{{ el.title }}</option>
         </select>
       </div>
     </div>
@@ -27,8 +28,14 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'FormComponentSalary',
-  props: ['vacancy'],
+  props: ['value'],
   mixins: [validationMixin],
+  data() {
+    return {
+      salarySumm: '',
+      salaryCode: '',
+    }
+  },
   created() {
     this.$store.dispatch('getCurrencies')
   },
@@ -40,12 +47,17 @@ export default {
         for (const el of list) {
           if (el.code == '(none)' || el.code == null) el.code = ''
           if (el.name !== null) {
-            currencyList.push(`${el.name} | ${el.code}`)
+            currencyList.push({ title: `${el.name} | ${el.code}`, code: el.code })
           }
         }
       }
       return currencyList
-    }
+    },
+    salary() {
+      let salary = this.salarySumm + ' ' + this.salaryCode
+      this.$emit('input', salary)
+      return salary
+    },
   },
 };
 </script>

@@ -91,7 +91,8 @@
             <label class="label">Relocation</label>
             <div class="control">
               <label class="checkbox">
-                <input type="checkbox" v-model="vacancy.relocate">&nbsp;&nbsp;Yes</label>
+                <input type="checkbox" v-model="vacancy.relocate">&nbsp;&nbsp;Yes
+              </label>
             </div>
           </div>
           <!-- Tag -->
@@ -110,21 +111,19 @@
                 :class="{
                 'is-danger': $v.vacancy.description.$error,
                 'is-success': !$v.vacancy.description.$invalid
-              }">
-              </textarea>
+              }"
+              ></textarea>
             </div>
           </div>
           <!-- Benefits -->
           <div class="field">
-            <label class="label">
-              Benefits
-            </label>
+            <label class="label">Benefits</label>
             <div class="control">
               <textarea
                 class="textarea"
                 placeholder="Describe your benefits"
-                v-model="vacancy.benefits">
-              </textarea>
+                v-model="vacancy.benefits"
+              ></textarea>
             </div>
           </div>
           <!-- Contacts -->
@@ -141,12 +140,12 @@
                 :class="{
                 'is-danger': $v.vacancy.contact.$error,
                 'is-success': !$v.vacancy.contact.$invalid
-              }">
-              </textarea>
+              }"
+              ></textarea>
             </div>
           </div>
           <!-- Salary -->
-          <FormComponentSalary :vacancy="vacancy"/>
+          <FormComponentSalary v-model="vacancy.salary"/>
         </div>
       </div>
     </div>
@@ -236,7 +235,7 @@ export default {
       const tag = newTag;
       this.vacancy.tags.value.push(tag);
     }
-  }
+  },
 };
 </script>
 
