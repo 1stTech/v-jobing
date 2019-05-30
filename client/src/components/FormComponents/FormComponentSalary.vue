@@ -7,9 +7,10 @@
         class="input"
         type="text"
         placeholder="Add the estimated salary (1000 - 2000)"
+        v-on:input="salary"
       >
       <div class="select">
-        <select v-model="salaryCode">
+        <select v-model="salaryCode" @change="salary()">
           <option disabled value>Select currency</option>
           <option
             v-for="(el, index) in currency"
@@ -28,7 +29,9 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'FormComponentSalary',
-  props: ['value'],
+  props: {
+    value: String,
+  },
   mixins: [validationMixin],
   data() {
     return {
@@ -53,12 +56,12 @@ export default {
       }
       return currencyList
     },
-    salary() {
-      let salary = this.salarySumm + ' ' + this.salaryCode
-      this.$emit('input', salary)
-      return salary
-    },
   },
+  methods: {
+    salary() {
+      this.$emit('input', this.salarySumm + ' ' + this.salaryCode)
+    },
+  }
 };
 </script>
 

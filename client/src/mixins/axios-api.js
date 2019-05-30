@@ -6,7 +6,7 @@ export default {
   async _request(method, path, data) {
     try {
       const res = await axios[method](`${BASE_URL}/${path}`, data)
-      console.log('_REQUEST: ', res.data) // TODO
+      console.log(`AXIOS-API::_REQUEST::${path} > `, res.data) // TODO
       if (!res.data.error) {
         return res.data
       }

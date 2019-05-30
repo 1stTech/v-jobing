@@ -146,6 +146,12 @@
           </div>
           <!-- Salary -->
           <FormComponentSalary v-model="vacancy.salary"/>
+          <div>Vacancy.salary (AddVacancy): {{vacancy.salary}}</div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link" @click="addVacancy">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -167,7 +173,6 @@ import FormComponentTag from '@/components/FormComponents/FormComponentTag';
 import FormComponentComSize from '@/components/FormComponents/FormComponentComSize';
 import FormComponentSalary from '@/components/FormComponents/FormComponentSalary';
 
-
 export default {
   name: 'AddVacancy',
   mixins: [validationMixin],
@@ -181,9 +186,11 @@ export default {
     FornComponentJobFormat,
     FormComponentTag,
     FormComponentComSize,
-    FormComponentSalary,
+    FormComponentSalary
   },
-  props: ['isActiveVacancy'],
+  props: {
+    isActiveVacancy: Boolean,
+  },
   data() {
     return {
       vacancy: {
@@ -234,8 +241,11 @@ export default {
     addTag(newTag) {
       const tag = newTag;
       this.vacancy.tags.value.push(tag);
+    },
+    addVacancy(event) {
+      console.log('SUBMIT', this.vacancy)
     }
-  },
+  }
 };
 </script>
 
