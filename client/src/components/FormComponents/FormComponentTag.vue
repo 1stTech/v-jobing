@@ -23,7 +23,9 @@ import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'FormComponentTag',
-  props: ['vacancy'],
+  props: {
+    vacancy: Object,
+  },
   components: {
     Multiselect
   },

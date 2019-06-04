@@ -22,12 +22,14 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { required } from "vuelidate/lib/validators"
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
-  name: "FormComponentCity",
-  props: ['vacancy'],
+  name: 'FormComponentCity',
+  props: {
+    vacancy: Object,
+  },
   mixins: [validationMixin],
   watch: {
     'vacancy.region': function(region) {

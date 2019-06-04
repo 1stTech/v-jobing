@@ -16,15 +16,17 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import { validationMixin } from 'vuelidate';
+import { required } from 'vuelidate/lib/validators';
 
 export default {
-  name: "FormComponentJobType",
-  props: ["vacancy"],
+  name: 'FormComponentJobType',
+  props: {
+    vacancy: Object,
+  },
   mixins: [validationMixin],
   created() {
-    this.$store.dispatch("getExpLevel");
+    this.$store.dispatch('getExpLevel');
   },
   computed: {
     expLevel() {

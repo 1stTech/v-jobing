@@ -22,12 +22,14 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { required } from "vuelidate/lib/validators"
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
-  name: "FormComponentComSize",
-  props: ["vacancy"],
+  name: 'FormComponentComSize',
+  props: {
+    vacancy: Object,
+  },
   mixins: [validationMixin],
   created() {
     this.$store.dispatch('getCompanySize')

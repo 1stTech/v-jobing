@@ -11,9 +11,9 @@
       >
         <select v-model="vacancy.country">
           <option disabled value>Select the country</option>
-          <option 
-            v-for="(el, index) in countries" 
-            :key="index" 
+          <option
+            v-for="(el, index) in countries"
+            :key="index"
             v-bind:value="{ name: el.country, code: el.code }"
           >{{ el.country }}</option>
         </select>
@@ -23,12 +23,14 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { required } from "vuelidate/lib/validators"
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
-  name: "FormComponentCountry",
-  props: ['vacancy'],
+  name: 'FormComponentCountry',
+  props: {
+    vacancy: Object,
+  },
   mixins: [validationMixin],
   created() {
     this.$store.dispatch('getCountries')
